@@ -17,6 +17,9 @@ namespace Bicep.Cli.Arguments
                     case "--stdout":
                         OutputToStdOut = true;
                         break;
+                    case "--overwrite":
+                        OverwriteOutputFile = true;
+                        break;
                     case "--outdir":
                         if (args.Length == i + 1)
                         {
@@ -60,6 +63,11 @@ namespace Bicep.Cli.Arguments
                 throw new CommandLineException($"The input file path was not specified");
             }
 
+            if (OverwriteOutputFile && OutputToStdOut)
+            {
+                throw new CommandLineException($"The --overwrite and --stdout parameters cannot both be used");
+            }
+
             if (OutputToStdOut && OutputDir is not null)
             {
                 throw new CommandLineException($"The --outdir and --stdout parameters cannot both be used");
@@ -87,6 +95,8 @@ namespace Bicep.Cli.Arguments
         }
 
         public bool OutputToStdOut { get; }
+
+        public bool OverwriteOutputFile { get; }
 
         public string InputFile { get; }
 

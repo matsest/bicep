@@ -47,6 +47,13 @@ namespace Bicep.Cli.Commands
             {
                 var decompilation = await compilationService.DecompileAsync(inputPath, outputPath);
 
+                if (File.Exists(outputPath) && !(args.OverwriteOutputFile))
+                {
+                    //TODO: find correct error handling..
+                    logger.LogError(CliResources.DecompilationFailedFormat);
+                    return 1;
+                }
+
                 if (args.OutputToStdOut)
                 {
                     writer.ToStdout(decompilation);
