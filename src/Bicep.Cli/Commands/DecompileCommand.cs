@@ -49,9 +49,7 @@ namespace Bicep.Cli.Commands
 
                 if (File.Exists(outputPath) && !(args.OverwriteOutputFile))
                 {
-                    //TODO: find correct error handling..
-                    logger.LogError(CliResources.DecompilationFailedFormat);
-                    return 1;
+                    throw new CommandLineException($"The output file \"{outputPath}\" already exists. Use --overwrite to overwrite it");
                 }
 
                 if (args.OutputToStdOut)
