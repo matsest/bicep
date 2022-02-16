@@ -48,6 +48,7 @@ namespace Bicep.Cli.UnitTests
         [DataRow(new[] { "decompile", "--outfile", "dir1", "--outfile", "dir2" }, "The --outfile parameter cannot be specified twice")]
         [DataRow(new[] { "decompile", "--stdout", "--outfile", "dir1", "file1" }, "The --outfile and --stdout parameters cannot both be used")]
         [DataRow(new[] { "decompile", "--stdout", "--outdir", "dir1", "file1" }, "The --outdir and --stdout parameters cannot both be used")]
+        [DataRow(new[] { "decompile", "--stdout", "--overwrite" }, "The --overwrite and --stdout parameters cannot both be used")]
         [DataRow(new[] { "decompile", "--outfile", "dir1", "--outdir", "dir2", "file1" }, "The --outdir and --outfile parameters cannot both be used")]
         [DataRow(new[] { "decompile", "--outdir", "dir1", "file1" }, "The specified output directory \"*\" does not exist.")]
         [DataRow(new[] { "publish" }, "The input file path was not specified.")]
